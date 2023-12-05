@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import checkValidateData from '../utils/validate';
+import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
 
 const Login = () => {
 
@@ -13,12 +15,49 @@ const Login = () => {
     setIsSignInForm(!isSignInForm);
   }
 
- 
+
   const handlebuttonclick=()=>{
-    const message=checkValidateData(name.current,email.current.value);
+    const message=checkValidateData(email.current.value,password.current.value);
     
     setErrorMsg(message);
-    //console.log(errorMsg);
+
+    // if(message)return;
+
+    if(!isSignInForm){
+      //sign up Logic
+      createUserWithEmailAndPassword( email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMsg(errorCode+" "+errorMessage);
+        // ..
+      });
+    
+    }
+    else{
+      //Sign up logic
+
+  signInWithEmailAndPassword( email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMsg(errorCode+" "+errorMessage);
+  });
+    }
+    console.log(errorMsg);
+
   }
   return (
     <div>
@@ -29,7 +68,7 @@ const Login = () => {
         className='absolute w-4/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-90'
         >
           <h1 className='font-bold text-3xl py-4 text-center' > {isSignInForm?"Sign In" : "Sign Up"} </h1>
-          {isSignInForm &&  <input 
+          {isSignInForm &&   <input 
             type='text'
             placeholder='Full Name'
             ref={name}
@@ -49,6 +88,8 @@ const Login = () => {
             placeholder='Password'
             className='p-4 my-4 w-full bg-gray-700 rounded-lg'
           /> 
+
+          <p className='text-red-500 font-bold py-2 text-xl text-center' >{errorMsg}</p>
 
           <button 
             className='p-4 my-6 bg-red-700 w-full rounded-lg '
