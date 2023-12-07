@@ -1,8 +1,13 @@
 import React from 'react'
+import MainContainer from './MainContainer'
+import SecoundaryContainer from './SecoundaryContainer'
 
 const Browse = () => {
   return (
-    <div>Browse</div>
+    <div>
+      <MainContainer/>
+      <SecoundaryContainer/>
+    </div>
   )
 }
 
