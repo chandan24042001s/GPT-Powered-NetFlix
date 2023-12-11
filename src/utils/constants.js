@@ -4,4 +4,10 @@ export const Netflix_Logo="https://upload.wikimedia.org/wikipedia/commons/7/7a/L
 
 export const user_Logo="https://avatars.githubusercontent.com/u/85206406?v=4"
 
-export const API_OPTIONS='69bd2d8f9916e4cfc166e4ac61ba8049'
+export const API_OPTIONS={
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWJkMmQ4Zjk5MTZlNGNmYzE2NmU0YWM2MWJhODA0OSIsInN1YiI6IjY1NmVkYTVkODg2MzQ4MDBhZGU1MmQ5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gWxIeSEUwlC2mNzSLstOBWdTsup3bBn7OT1-x7CDIQM'
+    }
+  };
