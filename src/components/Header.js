@@ -12,7 +12,7 @@ const Header = () => {
     <div>
      
       <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
-        <img className="h-14 "
+        <img className="h-14 z-10 "
         alt='logo' src={Netflix_Logo}/>
          <div className='flex p-2 justify-between' >
           <img className='h-12 w-12' src={user_Logo} alt='logo' />
