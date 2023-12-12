@@ -10,24 +10,19 @@ const Header = () => {
   }
   return (
     <div>
-      <div className='w-full absolute px-8 py-6 bg-gradient-to-b from-black z-10 flex justify-between'>
-       <div  >
+     
+      <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
         <img className="h-14 "
         alt='logo' src={Netflix_Logo}/>
-        </div>
-       <div className='flex p-2' >
+         <div className='flex p-2 justify-between' >
           <img className='h-12 w-12' src={user_Logo} alt='logo' />
           <button className='font-bold text-white' onClick={handleSignOut} >(Sign Out)</button>
         </div>
-
+        </div>
+        
       
-      </div>
       
-    <div>
-      <img className='absolute h-full' 
-      alt='logo' src={Netflix_Bg} />
-     
-    </div>
+  
     </div>
   )
 }

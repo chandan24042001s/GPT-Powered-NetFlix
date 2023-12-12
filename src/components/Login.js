@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { Netflix_Bg } from "../utils/constants";
 
 const Login = () => {
   const [errorMsg, setErrorMsg] = useState();
@@ -92,6 +93,9 @@ const Login = () => {
   return (
     <div>
       <Header />
+      <div className="absolute ">
+        <img className="h-screen object-cover" src={Netflix_Bg} alt="logo" />
+      </div>
       <div>
         <form
           onSubmit={(e) => {
