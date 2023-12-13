@@ -22,26 +22,12 @@ const Body = () => {
     }
   ])
 
-  useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-        const {uid,email,displayName}=user;
-        dispatch(addUser({uid:uid,email:email,displayName:displayName}));
-   
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        dispatch(removeUser());
-     
-      }
-    });
-  })
 
   return (
     <div>
-      <RouterProvider router={appRouter} />
+      <RouterProvider router={appRouter}>
+        <Login/>
+      </RouterProvider>
     
     </div>
   )

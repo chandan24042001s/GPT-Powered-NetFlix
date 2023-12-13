@@ -8,7 +8,7 @@ const SecoundaryContainer = () => {
   return (
     <div>
       {/* <Movielist title={"Now Playing"} movies={movies.nowPlayingMovies} /> */}
-
+    SecoundaryContainer
     </div>
   )
 }

@@ -7,7 +7,9 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { Netflix_Bg } from "../utils/constants";
+import { Netflix_Bg, USER_ICON } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [errorMsg, setErrorMsg] = useState();
@@ -16,6 +18,8 @@ const Login = () => {
   const password = useRef(null);
   const [isSignInForm, setIsSignInForm] = useState(true);
   const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const addedUser=useSelector(store=>store.user);
 
   const toggleSignInform = () => {
     setIsSignInForm(!isSignInForm);
@@ -45,11 +49,14 @@ const Login = () => {
           const user = userCredential.user;
 
           updateProfile(auth.currentUser, {
-            displayName: name.current.value, photoURL:"https://avatars.githubusercontent.com/u/85206406?v=4"
+            displayName: name.current.value, photoURL:USER_ICON
           }).then(() => {
             // Profile updated!
             // ...
-            navigate("/browse");
+            const { uid, email, displayName } = auth.currentUser;
+            dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+            console.log(addedUser)
+            // navigate("/browse");
 
 
           }).catch((error) => {
@@ -77,7 +84,11 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-            navigate("/browse");
+          const { uid, email, displayName } = auth.currentUser;
+          dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+          console.log(addedUser);
+            // navigate("/browse");
+         
           console.log(user);
           // ...
         })
@@ -110,6 +121,7 @@ const Login = () => {
           {!isSignInForm && (
             <input
               type="text"
+        
               placeholder="Full Name"
               ref={name}
               className="p-4 my-4 w-full bg-gray-700 rounded-lg"
