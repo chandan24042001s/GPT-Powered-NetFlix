@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Netflix_Bg, Netflix_Logo, USER_ICON, user_Logo } from '../utils/constants'
+import {  Netflix_Logo, USER_ICON,  } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { unstable_Blocker, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../utils/userSlice';
 // import { useSelector } from 'react-redux'
 

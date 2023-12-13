@@ -6,10 +6,20 @@ const SecoundaryContainer = () => {
   const movies=useSelector(store=>store.movies);
 
   return (
-    <div>
-      {/* <Movielist title={"Now Playing"} movies={movies.nowPlayingMovies} /> */}
-    SecoundaryContainer
+
+    <div >
+      {movies.nowPlayingMovies && (
+        <div className='bg-black' >
+          <div className="-mt-40 pl-12 relative z-20 mobile-view-sec">
+        <Movielist title={"Top Rated"} movies={movies?.topRatedMovies} />
+        <Movielist title={"Now Playing"} movies={movies?.nowPlayingMovies} />
+        <Movielist title={"Upcoming"} movies={movies?.upcomingMovies} />
+        <Movielist title={"Popular"} movies={movies?.popularMovies} />
+        </div>
     </div>
+      )}
+    </div>
+
   )
 }
 

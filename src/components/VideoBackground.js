@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import useMovieTrailer from '../utils/useMovieTrailer';
+import useMovieTrailer from '../hooks/useMovieTrailer';
 
 
 const VideoBackground = ({movieId}) => {
@@ -14,7 +14,7 @@ const VideoBackground = ({movieId}) => {
             src={"https://www.youtube.com/embed/"+ trailerVideo?.key +"?autoplay=1&mute=1" }
             title="YouTube video player"
             allowFullScreen
-            frameBorder="0"
+            
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
          ></iframe>
         }

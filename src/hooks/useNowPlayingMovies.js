@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import { addNowPlayingMovies } from './movieSlice';
+import { addNowPlayingMovies } from '../utils/movieSlice';
 import { useDispatch } from 'react-redux';
-import { API_OPTIONS } from './constants';
+import { API_OPTIONS } from '../utils/constants';
 
 const useNowPlayingMovies = async() => {
 

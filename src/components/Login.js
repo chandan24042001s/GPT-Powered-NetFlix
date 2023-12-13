@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword, updateProfile 
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 import { Netflix_Bg, USER_ICON } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
@@ -17,7 +17,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [isSignInForm, setIsSignInForm] = useState(true);
-  const navigate=useNavigate();
+
   const dispatch=useDispatch();
   const addedUser=useSelector(store=>store.user);
 
