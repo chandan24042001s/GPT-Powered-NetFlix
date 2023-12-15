@@ -17,3 +17,5 @@ export const API_OPTIONS={
  export const USER_ICON = "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg";
 
  export const SUPPORTED_LANGAUGE=[{identifier:"en", name:"English"},{identifier:"hindi", name:"Hindi"},{identifier:"spanish", name:"Spanish"}];
+
+ export const OPENAI_KEY="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"
