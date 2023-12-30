@@ -10,7 +10,8 @@ const GPTSearchBar = () => {
     const langKey=useSelector(store=>store.config.lang);
     const searchText=useRef(null);
     const dispatch=useDispatch();
-    const gptQuery="Act as a movie recommendation system and sugges some movies for the query"+searchText.current.value+"only give me a names of 5 movies, comma seperated like the example result given ahead . Example result: Gadar, Sholay, Don, golmal, koi mil gaya"
+    const gptQuery="Act as a movie recommendation system and sugges some movies for the query"+(searchText.current ? searchText.current.value : "")+"only give me a names of 5 movies, comma seperated like the example result given ahead . Example result: Gadar, Sholay, Don, golmal, koi mil gaya"
+    //const gptQuery="Act as a movie recommendation system and sugges some movies for the query"+searchText.current.value+"only give me a names of 5 movies, comma seperated like the example result given ahead . Example result: Gadar, Sholay, Don, golmal, koi mil gaya"
     const handleGPTSearchClick = async () => {
       console.log(searchText.current.value)
       try {
@@ -19,9 +20,11 @@ const GPTSearchBar = () => {
           model: 'gpt-3.5-turbo',
         });
         console.log(gptResults.choices)
-        const gptMovies = gptResults.choices ? [0].message?.content.split(",") : [];
+        const gptMovies = gptResults.choices && gptResults.choices.length > 0 ? gptResults.choices[0]?.message?.content.split(",") : [];
+        //const gptMovies = gptResults.choices ? gptResults.choices[0]?.message?.content.split(",") : [];
+        //const gptMovies = gptResults.choices ? [0].message?.content.split(",") : [];
         //for each movie search for tmdb api
-        console.log(gptMovies);
+        console.log(gptResults.choices ? (gptResults.choices[0].message ? gptResults.choices[0].message.content : undefined) : undefined);
         
         const searchMoiveTmdb=async(movie)=>{
           const data=await fetch("https://api.themoviedb.org/3/search/movie?query="+ movie +"&include_adult=false&language=en-US&page=1",API_OPTIONS);
@@ -32,7 +35,8 @@ const GPTSearchBar = () => {
 
         const promiseArray = gptMovies && gptMovies.length > 0 ? gptMovies.map(movie => searchMoiveTmdb(movie)) : [];
         const tmdbResults= await Promise.all(promiseArray);
-        dispatch(addGpMovieResult({gptMovieNames:gptMovies,tmdbMovieResults :tmdbResults }));
+        console.log(tmdbResults)
+        dispatch(addGpMovieResult({gptMovieNames:gptMovies,tmdbResults :tmdbResults }));
 
       } catch (error) {
         console.error('Error occurred:', error);

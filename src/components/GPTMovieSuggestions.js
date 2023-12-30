@@ -4,9 +4,9 @@ import Movielist from './Movielist'
 
 const GPTMovieSuggestions = () => {
 
-  const {gptMovieNames, tmdbMovieResults}=useSelector(store=>store.gpt);
+  const {gptMovieNames, tmdbResults}=useSelector(store=>store.gpt);
   if(!gptMovieNames)return null;
-
+  console.log(tmdbResults)
   return (
     <div className='p-4 m-4 bg-black text-white bg-opacity-90'>
         {
@@ -14,7 +14,8 @@ const GPTMovieSuggestions = () => {
             <Movielist 
               key={moviename}
               title={moviename}
-              movies={tmdbMovieResults[index]}
+              movies={tmdbResults ? tmdbResults[index] : []}
+              //movies={tmdbMovieResults[index]}
             />
           ))
         }
