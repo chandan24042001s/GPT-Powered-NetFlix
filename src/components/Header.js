@@ -14,7 +14,7 @@ const Header = () => {
   const user=useSelector(store=>store.user);
   const dispatch=useDispatch();
   const navigate=useNavigate();
-  console.log(user);
+  // console.log(user);
 
   const showGPTSearch=useSelector(store=>store.gpt.showGPTSearch);
 
@@ -41,7 +41,7 @@ const Header = () => {
   useEffect(()=>{
     const unSubscribe=onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         const {uid,email,displayName}=user;
         dispatch(addUser({uid:uid,email:email,displayName:displayName}));
         navigate("/browse");
