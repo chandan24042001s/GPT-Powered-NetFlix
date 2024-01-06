@@ -1,20 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import lang from '../utils/langaugeConstant';
 import openai from '../utils/openai';
 import { API_OPTIONS } from '../utils/constants';
 import { addGpMovieResult } from '../utils/gptSlice';
+import Shimmer from './Shimmer';
 
 
 const GPTSearchBar = () => {
     const langKey=useSelector(store=>store.config.lang);
     const searchText=useRef(null);
+    const [found, setFound] = useState(true);
+    
     const dispatch=useDispatch();
     const gptQuery="Act as a movie recommendation system and sugges some movies for the query"+(searchText.current ? searchText.current.value : "")+"only give me a names of 5 movies, comma seperated like the example result given ahead . Example result: Gadar, Sholay, Don, golmal, koi mil gaya"
     //const gptQuery="Act as a movie recommendation system and sugges some movies for the query"+searchText.current.value+"only give me a names of 5 movies, comma seperated like the example result given ahead . Example result: Gadar, Sholay, Don, golmal, koi mil gaya"
     const handleGPTSearchClick = async () => {
       console.log(searchText.current.value)
       try {
+        setFound(false);
         const gptResults = await openai.chat.completions.create({
           messages: [{ role: 'user', content: gptQuery }],
           model: 'gpt-3.5-turbo',
@@ -37,7 +41,7 @@ const GPTSearchBar = () => {
         const tmdbResults= await Promise.all(promiseArray);
         console.log(tmdbResults)
         dispatch(addGpMovieResult({gptMovieNames:gptMovies,tmdbResults :tmdbResults }));
-
+        
       } catch (error) {
         console.error('Error occurred:', error);
       }
@@ -61,6 +65,8 @@ const GPTSearchBar = () => {
                
             >{lang[langKey].search}</button>
         </form>
+       
+      
     </div>
   )
 }
