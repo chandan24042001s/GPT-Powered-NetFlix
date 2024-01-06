@@ -3,7 +3,7 @@ import {  Netflix_Logo, USER_ICON,  } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import {  useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../utils/userSlice';
 import { addGpMovieResult, toggleGPTSearchView } from '../utils/gptSlice';
 import { changeLangauge } from '../utils/configSlice';
@@ -44,6 +44,13 @@ const Header = () => {
  
   }
   
+  const navlinks=[
+    {name:"Home",link:'/'},
+    {name:"Tv Shows",link:'/tv'},
+    {name:"My List",link:'mylist'},
+    {name:"Movies",link:'movies'}
+  ]
+
   useEffect(()=>{
     const unSubscribe=onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -68,10 +75,23 @@ const Header = () => {
     <div>
      
       <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-20 flex flex-col md:flex-row justify-between">
+       <div className='leftside'>
         <img className="h-14 z-10 mx-auto md:mx-0 "
         alt='logo' src={Netflix_Logo}/>
+       </div> 
+       <ul className='text-white flex gap-5 text-center pt-5 links'>
+         {
+           navlinks.map(({name, link}) => {
+             return (
+               <li key={name}>
+                 <Link to={link}>{name}</Link>
+               </li>
+             )
+           })
+         }
+       </ul>
        
-        {user && <div className='flex p-2 justify-between' >
+        {user && <div className='flex p-2 justify-between rightside' >
        {showGPTSearch && (<select className='m-2 bg-gray-900 text-white' onChange={handleLangaugeChange} >
           {
             SUPPORTED_LANGAUGE.map((lang)=>(

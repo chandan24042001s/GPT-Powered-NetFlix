@@ -15,10 +15,18 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  .no-scroll::-webkit-scrollbar{
+  /* .no-scroll::-webkit-scrollbar{
   display: none;
   } 
  .no-scroll{
     -ms-overflow-style: none;
     scrollbar-width: none;
+  } */
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  hml,body{
+    overflow-x: hidden;
   }

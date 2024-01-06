@@ -11,8 +11,9 @@ const SecoundaryContainer = () => {
       {movies.nowPlayingMovies && (
         <div className='bg-black' >
           <div className="mt-0 md:-mt-40 pl-4 md:pl-12 relative z-20 mobile-view-sec">
+          <Movielist title={"Now Playing"} movies={movies?.nowPlayingMovies} />
         <Movielist title={"Top Rated"} movies={movies?.topRatedMovies} />
-        <Movielist title={"Now Playing"} movies={movies?.nowPlayingMovies} />
+       
         <Movielist title={"Upcoming"} movies={movies?.upcomingMovies} />
         <Movielist title={"Popular"} movies={movies?.popularMovies} />
         </div>
