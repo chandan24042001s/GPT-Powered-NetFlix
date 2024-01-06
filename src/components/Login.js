@@ -3,7 +3,8 @@ import Header from "./Header";
 import checkValidateData from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, updateProfile 
+  signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
@@ -18,8 +19,8 @@ const Login = () => {
   const password = useRef(null);
   const [isSignInForm, setIsSignInForm] = useState(true);
 
-  const dispatch=useDispatch();
-  const addedUser=useSelector(store=>store.user);
+  const dispatch = useDispatch();
+  const addedUser = useSelector((store) => store.user);
 
   const toggleSignInform = () => {
     setIsSignInForm(!isSignInForm);
@@ -27,7 +28,7 @@ const Login = () => {
 
   const handlebuttonclick = () => {
     const message = checkValidateData(
-      email.current.value,
+      email.current.value
       // password.current.value
     );
 
@@ -49,21 +50,24 @@ const Login = () => {
           const user = userCredential.user;
 
           updateProfile(auth.currentUser, {
-            displayName: name.current.value, photoURL:USER_ICON
-          }).then(() => {
-            // Profile updated!
-            // ...
-            const { uid, email, displayName } = auth.currentUser;
-            dispatch(addUser({uid:uid,email:email,displayName:displayName}));
-            console.log(addedUser)
-            // navigate("/browse");
-
-
-          }).catch((error) => {
-            // An error occurred
-            setErrorMsg(error);
-            // ...
-          });
+            displayName: name.current.value,
+            photoURL: USER_ICON,
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({ uid: uid, email: email, displayName: displayName })
+              );
+              console.log(addedUser);
+              // navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMsg(error);
+              // ...
+            });
 
           console.log(user);
           // ...
@@ -85,10 +89,12 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           const { uid, email, displayName } = auth.currentUser;
-          dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+          dispatch(
+            addUser({ uid: uid, email: email, displayName: displayName })
+          );
           console.log(addedUser);
-            // navigate("/browse");
-         
+          // navigate("/browse");
+
           console.log(user);
           // ...
         })
@@ -105,7 +111,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute ">
-        <img className="h-screen object-cover" src={Netflix_Bg} alt="logo" />
+        <img className="h-full object-cover" src={Netflix_Bg} alt="logo" />
       </div>
       <div>
         <form
@@ -121,7 +127,6 @@ const Login = () => {
           {!isSignInForm && (
             <input
               type="text"
-        
               placeholder="Full Name"
               ref={name}
               className="p-4 my-4 w-full bg-gray-700 rounded-lg"
@@ -142,12 +147,12 @@ const Login = () => {
             className="p-4 my-4 w-full bg-gray-700 rounded-lg"
           />
 
-          <p className="text-red-500 font-bold py-2 text-xl text-center">
+          <p className="text-LightRed font-bold py-2 text-xl text-center">
             {errorMsg}
           </p>
 
           <button
-            className="p-4 my-6 bg-red-700 w-full rounded-lg "
+            className="p-4 my-6 bg-LightRed w-full rounded-lg "
             onClick={handlebuttonclick}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
