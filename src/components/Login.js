@@ -28,12 +28,12 @@ const Login = () => {
   const handlebuttonclick = () => {
     const message = checkValidateData(
       email.current.value,
-      password.current.value
+      // password.current.value
     );
 
     setErrorMsg(message);
     console.log(email.current.value);
-    console.log(password.current.value);
+    // console.log(password.current.value);
 
     if (message) return;
 
