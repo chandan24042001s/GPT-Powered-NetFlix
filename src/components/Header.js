@@ -46,7 +46,7 @@ const Header = () => {
   
   const navlinks=[
     {name:"Home",link:'/'},
-    {name:"Tv Shows",link:'/tv'},
+    {name:"Tv Shows",link:'/'},
     {name:"My List",link:'mylist'},
     {name:"Movies",link:'movies'}
   ]
@@ -79,7 +79,7 @@ const Header = () => {
         <img className="h-14 z-10 mx-auto md:mx-0 "
         alt='logo' src={Netflix_Logo}/>
        </div> 
-       <ul className='text-white flex gap-5 text-center pt-5 links'>
+       {/* <ul className='text-white flex gap-5 text-center pt-5 links'>
          {
            navlinks.map(({name, link}) => {
              return (
@@ -89,7 +89,7 @@ const Header = () => {
              )
            })
          }
-       </ul>
+       </ul> */}
        
         {user && <div className='flex p-2 justify-between rightside' >
        {showGPTSearch && (<select className='m-2 bg-gray-900 text-white' onChange={handleLangaugeChange} >
