@@ -19,19 +19,19 @@
 
 ##Netflix GPT
 1. Create React App
-2. 
+2. Sign up Form
 3. Configured TailwindCSS
 4. Header
 5. Routing of App
-6.-Login Form
--Sign up Form
--Form Validation
--useRef Hook
--Firebase Setup
--Deploying our app to production
--Create SignUp User Account
--Implement Sign In user Api
--Created Redux Store with userSlice
+   Login Form
+
+6. Form Validation
+7. useRef Hook
+8. Firebase Setup
+9. Deploying our app to production
+10. Create SignUp User Account
+11. Implement Sign In user Api
+12. Created Redux Store with userSlice
 -Implemented Sign out
 -Update Profile
 -BugFix: Sign up user displayName and profile picture update
