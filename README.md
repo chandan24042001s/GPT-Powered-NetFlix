@@ -19,10 +19,11 @@
 
 ##Netflix GPT
 1. Create React App
-2. Configured TailwindCSS
-3. Header
--Routing of App
--Login Form
+2. 
+3. Configured TailwindCSS
+4. Header
+5. Routing of App
+6.-Login Form
 -Sign up Form
 -Form Validation
 -useRef Hook
