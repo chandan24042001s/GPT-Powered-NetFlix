@@ -111,7 +111,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute ">
-        <img className="h-screen object-cover" src={Netflix_Bg} alt="logo" />
+        <img className="h-screen w-screen object-cover" src={Netflix_Bg} alt="logo" />
       </div>
       <div>
         <form
